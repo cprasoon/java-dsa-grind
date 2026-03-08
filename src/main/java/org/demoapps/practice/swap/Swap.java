@@ -1,6 +1,11 @@
 package org.demoapps.practice.swap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Swap {
+
+    Logger logger = LoggerFactory.getLogger("swap");
 
     static class MyInt {
         int data;
@@ -11,19 +16,15 @@ public class Swap {
     }
 
     public static void main() {
-        MyInt a = new MyInt(10);
-        MyInt b = new MyInt(90);
-
-        System.out.printf("Before -> A: %d, B: %d %n", a.data, b.data);
-        swap(a, b);
-        System.out.printf("Before -> A: %d, B: %d %n", a.data, b.data);
-
+        new Swap().doSwap(new MyInt(10), new MyInt(90));
     }
 
-    private static void swap(MyInt a, MyInt b) {
+    public void doSwap(MyInt a, MyInt b) {
+        logger.info("Before -> A: {}, B: {}", a.data, b.data);
         MyInt temp = new MyInt(a.data);
         a.data = b.data;
         b.data = temp.data;
+        logger.info(" After -> A: {}, B: {}", a.data, b.data);
     }
 
 }
